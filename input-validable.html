@@ -1,0 +1,10 @@
+<div class="form-group has-feedback" ng-class="$ctrl.formGroupClass()">
+  <label for="order-batchId"
+         class="col-sm-2 control-label">{{:: $ctrl.label}}</label>
+  <div class="col-sm-10">
+    <ng-transclude></ng-transclude>
+    <span ng-show="$ctrl.isValid()" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    <span ng-show="$ctrl.hasWarning()" class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+    <span ng-show="$ctrl.hasError()" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  </div>
+</div>

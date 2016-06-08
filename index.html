@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>angular-form-validation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  </head>
+  <body ng-app="app">
+
+    <br /> <br />
+
+    <div class="container" ng-controller="AppController as $ctrl">
+      <div class="row">
+        <form name="form" class="form-horizontal" novalidate>
+
+          <input-validable validator="form.wineId" label="Wine id" warning="$ctrl.warning">
+            <input type="text"
+                   class="form-control"
+                   id="wine-id"
+                   name="wineId"
+                   ng-model="$ctrl.newWine.id"
+                   placeholder="A wine id ..."
+                   ng-required="true"
+                   ng-pattern="/chablis/"
+                   ng-change="$ctrl.warning = null" />
+                   <small class="help-block" ng-show="form.wineId.$error.required && form.wineId.$dirty">Wine id is required</small>
+                   <small class="help-block" ng-show="form.wineId.$error.pattern && form.wineId.$dirty">Wine id don't follow pattern</small>
+          </input-validable>
+
+          <input-validable validator="form.wineName" label="Wine name" warning="$ctrl.warning">
+            <input type="text" class="form-control" placeholder="A wine name ..." id="wine-name"
+                   name="wineName"
+                   ng-model="$ctrl.newWine.name"
+                   ng-required="true"
+                   ng-change="$ctrl.warning = null" />
+                   <small class="help-block" ng-show="form.wineName.$error.required && form.wineName.$dirty">Wine name is required</small>
+          </input-validable>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary" ng-disabled="!form.$valid || form.$pristine" ng-click="$ctrl.save()">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script src="index.js"></script>
+    <script src="input-validable.js"></script>
+  </body>
+</html>
